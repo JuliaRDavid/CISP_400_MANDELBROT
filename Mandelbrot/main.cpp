@@ -15,6 +15,9 @@ int main()
 	view.setSize(pixelWidth, pixelHeight);
 	view.setCenter(VideoMode::getDesktopMode().width / 2, VideoMode::getDesktopMode().height / 2);
 	window.setView(view);
+	
+	sf::Text game_string;
+
 
 	sf::Text game_string;
 
