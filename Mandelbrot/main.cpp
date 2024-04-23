@@ -1,4 +1,5 @@
 #include "ComplexPlane.h"
+#include <sstream>
 
 int main()
 {
@@ -14,6 +15,9 @@ int main()
 	view.setSize(pixelWidth, pixelHeight);
 	view.setCenter(VideoMode::getDesktopMode().width / 2, VideoMode::getDesktopMode().height / 2);
 	window.setView(view);
+
+	sf::Text game_string;
+
 
 	ComplexPlane chaos(pixelWidth, pixelHeight);
 
@@ -58,7 +62,8 @@ int main()
 		Update the scene
 		****************************************
 		*/
-		
+		chaos.updateRender();
+		//chaos.loadText(game_string);
 
 		/*
 		****************************************
@@ -67,6 +72,7 @@ int main()
 		*/
 
 		window.clear();
+		window.draw(game_string);
 		window.draw(chaos);
 		window.display();
 	}

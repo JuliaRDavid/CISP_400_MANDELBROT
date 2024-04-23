@@ -20,7 +20,6 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 void ComplexPlane::zoomIn()
 {
 
-
 	m_state = State::CALCULATING;
 }
 void ComplexPlane::zoomOut()
@@ -41,7 +40,22 @@ void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 }
 void ComplexPlane::loadText(Text& text)
 {
-
+	sf::Font font;
+	if (!font.loadFromFile("HARRISON.ttf"))
+	{
+		std::cout << "ERROR: Font failed to load!" << std::endl;
+	}
+	text.setFont(font);
+	text.setCharacterSize(28);
+	text.setFillColor(sf::Color::White);
+	std::stringstream game_stream;
+	game_stream <<
+		"Mandelbrot Set" <<
+		"\n Center: (0,0)" <<
+		"\n Cursor: (filler, filler)" <<
+		"\n Left-Click to Zoom in" <<
+		"\n Right-Click to Zoom out";
+	text.setString(game_stream.str());
 }
 void ComplexPlane::updateRender()
 {
@@ -61,13 +75,24 @@ void ComplexPlane::updateRender()
 
 int countIterations(Vector2f coord)
 {
+	complex<double> c(coord.x, coord.y);
+	complex<double> z(0, 0);
+	int count = 0;
 
+	while (abs(z) <= 2 && count < 64)
+	{
+		z = z * z + c;
+		count++;
+	}
+	return count;
 }
+
 void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
 
 }
+
 Vector2f mapPixelToCoords(Vector2i mousePixel)
 {
-
+	return Vector2f(0, 0);
 }
