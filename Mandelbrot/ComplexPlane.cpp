@@ -41,7 +41,22 @@ void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 }
 void ComplexPlane::loadText(Text& text)
 {
-
+	sf::Font font;
+	if (!font.loadFromFile("HARRISON.ttf"))
+	{
+		std::cout << "ERROR: Font failed to load!" << std::endl;
+	}
+	text.setFont(font);
+	text.setCharacterSize(28);
+	text.setFillColor(sf::Color::White);
+	std::stringstream game_stream;
+	game_stream <<
+		"Mandelbrot Set" <<
+		"\n Center: (0,0)" <<
+		"\n Cursor: (filler, filler)" <<
+		"\n Left-Click to Zoom in" <<
+		"\n Right-Click to Zoom out";
+	text.setString(game_stream.str());
 }
 void ComplexPlane::updateRender()
 {
