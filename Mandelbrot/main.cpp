@@ -19,9 +19,6 @@ int main()
 	sf::Text game_string;
 
 
-	sf::Text game_string;
-
-
 	ComplexPlane chaos(pixelWidth, pixelHeight);
 
 	while (window.isOpen())
