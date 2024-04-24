@@ -35,7 +35,7 @@ void ComplexPlane::setCenter(Vector2i mousePixel)
 }
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
-
+	
 }
 void ComplexPlane::loadText(Text& text)
 {
@@ -78,7 +78,7 @@ int ComplexPlane::countIterations(Vector2f coord)
 	complex<double> z(0, 0);
 	int count = 0;
 
-	while (abs(z) <= 2 && count < 64)
+	while (abs(z) <= 2 && count < MAX_ITER)
 	{
 		z = z * z + c;
 		count++;
@@ -88,7 +88,54 @@ int ComplexPlane::countIterations(Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
-
+	if (count == MAX_ITER)
+	{
+		r = 0;
+		g = 0;
+		b = 0;
+	}
+	else if (count > 57)
+	{
+		r = 90;
+		g = 0;
+		b = 90;
+	}
+	else if (count > 50)
+	{
+		r = 80;
+		g = 0;
+		b = 110;
+	}
+	else if (count > 40)
+	{
+		r = 60;
+		g = 0;
+		b = 230;
+	}
+	else if (count > 30)
+	{
+		r = 0;
+		g = 130;
+		b = 230;
+	}
+	else if (count > 20)
+	{
+		r = 0;
+		g = 255;
+		b = 255;
+	}
+	else if (count > 10)
+	{
+		r = 0;
+		g = 255;
+		b = 210;
+	}
+	else 
+	{
+		r = 250;
+		g = 200;
+		b = 250;
+	}
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
