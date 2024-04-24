@@ -19,13 +19,20 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 }
 void ComplexPlane::zoomIn()
 {
+	m_zoomCount++;
+	float temp_x = BASE_WIDTH * pow(BASE_ZOOM, m_zoomCount);
+	float temp_y = BASE_HEIGHT * m_aspectRatio *pow(BASE_ZOOM, m_zoomCount);
+	m_plane_size = {temp_x, temp_y};
 
 	m_state = State::CALCULATING;
 }
 void ComplexPlane::zoomOut()
 {
-
-
+	m_zoomCount--;
+	float temp_x = BASE_WIDTH * pow(BASE_ZOOM, m_zoomCount);
+	float temp_y = BASE_HEIGHT * m_aspectRatio *pow(BASE_ZOOM, m_zoomCount);
+	m_plane_size = {temp_x, temp_y};
+	
 	m_state = State::CALCULATING;
 }
 void ComplexPlane::setCenter(Vector2i mousePixel)
@@ -35,18 +42,10 @@ void ComplexPlane::setCenter(Vector2i mousePixel)
 }
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
-	
+	m_mouseLocation = mapPixelToCoords(mousePixel);
 }
 void ComplexPlane::loadText(Text& text)
 {
-	sf::Font font;
-	if (!font.loadFromFile("HARRISON.ttf"))
-	{
-		std::cout << "ERROR: Font failed to load!" << std::endl;
-	}
-	text.setFont(font);
-	text.setCharacterSize(28);
-	text.setFillColor(sf::Color::White);
 	std::stringstream game_stream;
 	game_stream <<
 		"Mandelbrot Set" <<

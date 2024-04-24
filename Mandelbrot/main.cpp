@@ -16,7 +16,15 @@ int main()
 	view.setCenter(VideoMode::getDesktopMode().width / 2, VideoMode::getDesktopMode().height / 2);
 	window.setView(view);
 	
+	sf::Font font;
+	if (!font.loadFromFile("HARRISON.ttf"))
+	{
+		std::cout << "ERROR: Font failed to load!" << std::endl;
+	}
 	sf::Text game_string;
+	game_string.setFont(font);
+	game_string.setCharacterSize(28);
+	game_string.setFillColor(sf::Color::Blue);
 
 
 	ComplexPlane chaos(pixelWidth, pixelHeight);
@@ -63,7 +71,7 @@ int main()
 		****************************************
 		*/
 		chaos.updateRender();
-		//chaos.loadText(game_string);
+		chaos.loadText(game_string);
 
 		/*
 		****************************************
