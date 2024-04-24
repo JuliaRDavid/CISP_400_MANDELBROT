@@ -49,8 +49,8 @@ void ComplexPlane::loadText(Text& text)
 	std::stringstream game_stream;
 	game_stream <<
 		"Mandelbrot Set" <<
-		"\n Center: (0,0)" <<
-		"\n Cursor: (filler, filler)" <<
+		"\n Center: (" << m_plane_center.x << "," << m_plane_center.y << ")" <<
+		"\n Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" <<
 		"\n Left-Click to Zoom in" <<
 		"\n Right-Click to Zoom out";
 	text.setString(game_stream.str());
