@@ -21,7 +21,7 @@ void ComplexPlane::zoomIn()
 {
 	m_zoomCount++;
 	float temp_x = BASE_WIDTH * pow(BASE_ZOOM, m_zoomCount);
-	float temp_y = BASE_HEIGHT * m_aspectRatio *pow(BASE_ZOOM, m_zoomCount);
+	float temp_y = BASE_HEIGHT * m_aspectRatio * pow(BASE_ZOOM, m_zoomCount);
 	m_plane_size = {temp_x, temp_y};
 
 	m_state = State::CALCULATING;
@@ -59,12 +59,12 @@ void ComplexPlane::updateRender()
 {
 	if (m_state == State::CALCULATING)
 	{
-		for (size_t i = 0; i < m_pixel_size.y; i++)
+		for (int i = 0; i < m_pixel_size.y; i++)
 		{
-			for (size_t j = 0; j < m_pixel_size.x; j++)
+			for (int j = 0; j < m_pixel_size.x; j++)
 			{
 				m_vArray[j + i * m_pixel_size.x].position = { (float)j,(float)i };
-				int count = countIterations(mapPixelToCoords({ (float)j,(float)i }));
+				int count = countIterations(mapPixelToCoords({ j, i }));
 				Uint8 r, g, b;
 				iterationsToRGB(count, r, g, b);
 				m_vArray[j + i * m_pixel_size.x].color = {r, g, b};
