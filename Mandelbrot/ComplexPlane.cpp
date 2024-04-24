@@ -98,15 +98,15 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	}
 	else if (count > 57)
 	{
-		r = 90;
-		g = 0;
-		b = 90;
+		r = 255;
+		g = 150;
+		b = 230;
 	}
 	else if (count > 50)
 	{
-		r = 80;
-		g = 0;
-		b = 110;
+		r = 70;
+		g = 220;
+		b = 0;
 	}
 	else if (count > 40)
 	{
@@ -134,15 +134,15 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	}
 	else 
 	{
-		r = 250;
-		g = 200;
-		b = 250;
+		r = 255;
+		g = 250;
+		b = 255;
 	}
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
-	Vector2f coords = { ((float(mousePixel.x) / m_pixel_size.x) * m_plane_size.x - (m_plane_center.x - m_plane_size.x/2)),
-							((float(mousePixel.y) / m_pixel_size.y) * m_plane_size.y - (m_plane_center.y - m_plane_size.y/2)) };
+	Vector2f coords = { ((float(mousePixel.x) / m_pixel_size.x) * m_plane_size.x + (m_plane_center.x - m_plane_size.x/2)),
+							((float(mousePixel.y) / m_pixel_size.y) * m_plane_size.y + (m_plane_center.y - m_plane_size.y/2)) };
 	return coords;
 }
