@@ -80,8 +80,8 @@ int main()
 		*/
 
 		window.clear();
-		window.draw(game_string);
 		window.draw(chaos);
+		window.draw(game_string);
 		window.display();
 	}
 }
