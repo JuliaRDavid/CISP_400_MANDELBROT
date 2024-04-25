@@ -57,7 +57,7 @@ int main()
 			}
 			if (event.type == sf::Event::MouseMoved)
 			{
-				chaos.setMouseLocation({ event.mouseButton.x, event.mouseButton.y });
+				chaos.setMouseLocation(Mouse::getPosition(window));
 			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
